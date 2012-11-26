@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>absolute元素宽度100%</title>
+</head>
+
+<body>
+
+
+
+<div class="box">
+	<div class="hd">
+    	<h3>bug重现(IE6)</h3>
+    </div>
+    <div class="bd" style=" height: 500px;">
+    	<div style=" position: absolute; padding: 10px; background-color: blue; color: #fff;">
+            父元素绝对定位
+            <pre>
+            {
+                poasition: absolute;
+                padding: 10px;
+                background-color: blue;
+                color: #fff;
+            }
+            </pre>
+          <div style=" height: 200px; background-color: #F00;">
+                子元素具有高度、或zoom值为非auto、或display为inline-block会使父元素宽度撑大
+                <pre>
+                {
+                    height: 200px;
+                    /*
+                    zoom: 1;
+                    display: inline-block;
+                    */
+                    background-color: #F00;
+                }
+                </pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="box">
+	<div class="hd">
+    	<h3>bug修复</h3>
+    </div>
+    <div class="bd" style=" height: 500px;">
+    	<div style=" position: absolute; padding: 10px; background-color: blue; color: #fff;">
+            
+            尝试对父元素设置宽度、或避免触发子元素的haslayout
+            <pre>
+            {
+                poasition: absolute;
+                /*
+                width: 600px;
+                */
+                padding: 10px;
+                background-color: blue;
+                color: #fff;
+            }
+            </pre>
+          <div style=" background-color: #F00;">
+                <pre>
+                {
+                    /*
+                    height: 200px;
+                    zoom: 1;
+                    display: inline-block;
+                    */
+                    background-color: #F00;
+                }
+                </pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
